@@ -1,0 +1,69 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap');
+
+*
+{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body{
+    font-family: 'Inter', sans-serif, system-ui, ui-sans-serif, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji'!important;
+}
+
+header{
+    background: #fff;
+    height: auto;
+    padding: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    transform: none;
+    transition: all 0s ease 0s;
+    box-shadow: rgb(255, 255, 255) 0px 0px 0px 0px, rgb(9, 9, 11, 0.05) 0px 0px 0px 1px, rgb(0, 0, 0, 0.05) 0px 1px 2px 0px;
+    position: fixed;
+    width: 100%;
+    z-index: 1000;
+
+    -webkit-transform: none;
+    -moz-transform: none;
+    -ms-transform: none;
+    -o-transform: none;
+    -webkit-transition: all 0s ease 0s;
+    -moz-transition: all 0s ease 0s;
+    -ms-transition: all 0s ease 0s;
+    -o-transition: all 0s ease 0s;
+}
+
+.lien-titre-logo
+{
+    font-size: 22px;
+    font-weight: 700;
+    letter-spacing: -0.5px;
+    line-height: 20px;
+    text-decoration: none solid rgb(9, 9, 11);
+    word-spacing: 0px;
+    color: #3F4BE0;
+}
+
+.lien{
+    font-weight: 600!important;
+}
+
+.lien:hover{
+    color: #3F4BE0!important;
+}
+
+.active{
+    color: #3F4BE0;
+}
+
+.box
+{
+    top: 65%;
+    transform: translate(0px, -50%);
+    -webkit-transform: translate();
+    -moz-transform: translate();
+    -ms-transform: translate();
+    -o-transform: translate();
+}
