@@ -35,6 +35,11 @@ Liste des fonctionnalités principales de l'application.
    - Copier le fichier `.env.example` et renommez-le en `.env`.
    - Modifier les variables d'environnement dans `.env` selon vos configurations locales (base de données, mail, etc.).
 
+   3.1 **Tester l'envoi des mails**
+   - Se connecter à mailtrap : https://mailtrap.io/signin
+   - E-mail mailtrap : kolaned264@hostlace.com
+   - Mots de passe mailtrap : kolaned264
+
    ```bash
    cp .env.example .env
    php artisan key:generate
