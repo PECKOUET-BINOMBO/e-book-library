@@ -21,7 +21,7 @@ use App\Livewire\Livre;
 
 
 
-//GUEST ROUTES
+//ROUTES INVITÉ
 Route::get('/', [livreController::class, 'index'])->name('accueil');
 
 Route::get('/register', [AuthUserController::class, 'register_form'])->name('auth.register.form');
@@ -29,14 +29,14 @@ Route::get('/login', [AuthUserController::class, 'login_form'])->name('auth.logi
 Route::post('/register', [AuthUserController::class, 'register'])->name('register');
 Route::post('/login', [AuthUserController::class, 'login'])->name('login');
 
-//FORGOT PASSWORD ROUTES
+//ROUTES MOT DE PASSE OUBLIÉ
 Route::get('/forgot-password', [AuthController::class, 'resetFormSendLink'])->name('resetFormSendLink');
 Route::post('/forgot-password', [AuthController::class, 'resetSendLink'])->name('resetSendLink');
 Route::get('/reset-password/{token}', [AuthController::class, 'reset_form'])->name('reset_form');
 Route::post('/reset-password/{token}', [AuthController::class, 'reset'])->name('reset');
 
 
-//USERS SIMPLE CONNECTED ROUTES
+//ROUTES UTILISATEUR CONNECTÉ
 Route::middleware([UserConnect::class])->group(function () {
 
     Route::post('/livres/emprunt/{id}', [livreController::class, 'emprunt'])->name('livres.emprunt');
@@ -48,59 +48,59 @@ Route::middleware([UserConnect::class])->group(function () {
 });
 
 
-//ADMIN ROUTES
+//ROUTES ADMINISTRATEUR
 Route::prefix('admin')->group(function () {
 
     Route::get('/users/register', [AuthController::class, 'register_form'])->name('admin.auth.register.form');
     Route::get('/users/login', [AuthController::class, 'login_form'])->name('admin.auth.login.form');
 
     Route::middleware([AuthAdmin::class])->group(function () {
-        //Dashboard routes
+        //ROUTES DASHBOARD
         Route::get('/', [DashboardController::class, 'index'])->name('admin.dashboard.index');
 
-        //User routes
+        //ROUTES UTILISATEURS
         Route::get('/users', [UserController::class, 'index'])->name('admin.users.index');
         Route::post('/users/store', [UserController::class, 'store'])->name('admin.users.store');
         Route::post('/users/login', [UserController::class, 'login'])->name('admin.users.login');
         Route::put('/users/{id}', [UserController::class, 'update'])->name('admin.users.update');
         Route::delete('/users/{user}', [UserController::class, 'destroy'])->name('admin.users.destroy');
 
-        //Authentification routes
+        //ROUTES AUTHENTIFICATION
 
         Route::post('/users/register', [AuthController::class, 'register'])->name('admin.auth.register');
         Route::post('/users/login', [AuthController::class, 'login'])->name('admin.auth.login');
         Route::get('/users/logout', [AuthController::class, 'logout'])->name('admin.auth.logout');
 
-        //Livre routes
+        //ROUTES LIVRES
         Route::get('/livres', [AdminLivreController::class, 'index'])->name('admin.livres.index');
         Route::post('/livres/store', [AdminLivreController::class, 'store'])->name('admin.livres.store');
         Route::put('/livres/{id}', [AdminLivreController::class, 'update'])->name('admin.livres.update');
         Route::delete('/livres/{livre}', [AdminLivreController::class, 'destroy'])->name('admin.livres.destroy');
 
-        //Auteur routes
+        //ROUTES AUTEURS
         Route::get('/auteurs', [AuteurController::class, 'index'])->name('admin.auteurs.index');
         Route::post('/auteurs/store', [AuteurController::class, 'store'])->name('admin.auteurs.store');
         Route::put('/auteurs/{id}', [AuteurController::class, 'update'])->name('admin.auteurs.update');
         Route::delete('/auteurs/{auteur}', [AuteurController::class, 'destroy'])->name('admin.auteurs.destroy');
 
-        //Categorie routes
+        //ROUTES CATEGORIES
         Route::get('/categories', [AdminCategorieController::class, 'index'])->name('admin.categories.index');
         Route::post('/categories/store', [AdminCategorieController::class, 'store'])->name('admin.categories.store');
         Route::put('/categories/{id}', [AdminCategorieController::class, 'update'])->name('admin.categories.update');
         Route::delete('/categories/{livre}', [AdminCategorieController::class, 'destroy'])->name('admin.categories.destroy');
 
-        //Editeur routes
+        //ROUTES EDITEURS
         Route::get('/editeurs', [EditeurController::class, 'index'])->name('admin.editeurs.index');
         Route::post('/editeurs/store', [EditeurController::class, 'store'])->name('admin.editeurs.store');
         Route::put('/editeurs/{id}', [EditeurController::class, 'update'])->name('admin.editeurs.update');
         Route::delete('/editeurs/{livre}', [EditeurController::class, 'destroy'])->name('admin.editeurs.destroy');
 
-        //Profil routes
+        //ROUTES PROFILS
         Route::get('/profils/{id}', [AdminProfil::class, 'index'])->name('admin.profils.index');
         Route::put('/profils/{id}', [AdminProfil::class, 'update'])->name('admin.profils.update');
         Route::delete('/profils/{id}', [AdminProfil::class, 'destroy'])->name('admin.profils.destroy');
 
-        //Historique routes
+        //ROUTE HISTORIQUES
         Route::get('/historiques', [HistoriqueController::class, 'index'])->name('admin.historiques.index');
     });
 });
