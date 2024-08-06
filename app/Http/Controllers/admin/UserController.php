@@ -154,7 +154,7 @@ class UserController extends Controller
         if ($user) {
             return redirect()->route('admin.users.index')->with('success', 'Utilisateur supprimé avec succès');
         } else {
-            return redirect()->route('admin.users.index')->with('error', 'Erreur lors de la suppression de l\'utilisateur');
+            return back()->with('error', 'Erreur lors de la suppression de l\'utilisateur');
         }
     }
 }

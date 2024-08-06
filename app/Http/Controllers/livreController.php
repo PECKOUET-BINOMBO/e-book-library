@@ -41,6 +41,8 @@ class livreController extends Controller
 
         $user_id = auth()->user()->id;
         $livre_id = $id;
+        $name_user = User::where('id', $user_id)->first();
+        $name_livre = Livre::where('id', $livre_id)->first();
 
         $update_statut_livre = Livre::where('id', $livre_id)->update(['statut' => 'indisponible']);
 
@@ -51,9 +53,11 @@ class livreController extends Controller
             'date_retour' => now()->addDays(15)
         ]);
 
+
+
         $historique = Historique::create([
-            'user_id' => $user_id,
-            'livre_id' => $livre_id,
+            'user_id' => $name_user->name,
+            'livre_id' => $name_livre->titre,
             'date_emprunt' => now(),
             'date_retour' => now()->addDays(15)
         ]);

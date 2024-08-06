@@ -8,21 +8,39 @@ use App\Models\Auteur;
 use App\Models\Editeur;
 use App\Models\Categorie;
 use App\Http\Controllers\Controller;
+use App\Models\Historique;
 use Illuminate\Http\Request;
 
 class HistoriqueController extends Controller
 {
+
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
+        $search = $request->search;
+
+
+        if ($search) {
+
+
+            $historiques = Historique::where('livre_id', 'LIKE', "%{$search}%")
+                ->orWhere('user_id', 'LIKE', "%{$search}%")
+                ->orWhere('date_emprunt', 'LIKE', "%{$search}%")
+                ->orWhere('date_retour', 'LIKE', "%{$search}%")
+                ->paginate(25);
+        } else {
+            $historiques = Historique::orderBy('id', 'desc')->paginate(25);
+        }
+
         $users = User::orderBy('id', 'desc')->paginate('5');
         $livres = Livre::orderBy('id', 'desc')->paginate('5');
         $categories = Categorie::orderBy('id', 'desc')->paginate('5');
         $auteurs = Auteur::orderBy('id', 'desc')->paginate('5');
         $editeurs = Editeur::orderBy('id', 'desc')->paginate('5');
-        return view('admin.historiques.index', compact('users', 'livres', 'categories', 'auteurs', 'editeurs'));
+
+        return view('admin.historiques.index', compact('historiques', 'users', 'livres', 'categories', 'auteurs', 'editeurs'));
     }
 
     /**

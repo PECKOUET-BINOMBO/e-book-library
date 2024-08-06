@@ -15,6 +15,7 @@ use App\Http\Controllers\admin\DashboardController;
 use App\Http\Controllers\admin\AdminLivreController;
 use App\Http\Controllers\admin\HistoriqueController;
 use App\Http\Controllers\admin\AdminCategorieController;
+use App\Http\Controllers\admin\AdminProfil;
 use App\Livewire\Livre;
 
 
@@ -94,7 +95,13 @@ Route::prefix('admin')->group(function () {
         Route::put('/editeurs/{id}', [EditeurController::class, 'update'])->name('admin.editeurs.update');
         Route::delete('/editeurs/{livre}', [EditeurController::class, 'destroy'])->name('admin.editeurs.destroy');
 
+        //Profil routes
+        Route::get('/profils/{id}', [AdminProfil::class, 'index'])->name('admin.profils.index');
+        Route::put('/profils/{id}', [AdminProfil::class, 'update'])->name('admin.profils.update');
+        Route::delete('/profils/{id}', [AdminProfil::class, 'destroy'])->name('admin.profils.destroy');
+
         //Historique routes
         Route::get('/historiques', [HistoriqueController::class, 'index'])->name('admin.historiques.index');
     });
 });
+
